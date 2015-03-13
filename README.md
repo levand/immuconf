@@ -13,11 +13,10 @@ pattern so it doesn't need to be continually re-implemented.
 
 **Characteristics:**
 
-- Explicit. Configurations are normal maps, intended to be passed
-  through the code explicitly as function arguments, not globally or
-  ambiently. Note that I can't *stop* you from binding the config to a
-  global or thread-local var but from personal experience its a bad
-  idea.
+- Explicit. Configurations are intended to be passed through the code
+  explicitly as function arguments, not globally or ambiently. Note
+  that I can't *stop* you from binding the config to a global or
+  thread-local var but from personal experience its a bad idea.
 
 - Lightweight. As non-intrusive as possible. Configs are normal
   Clojure maps.
@@ -36,13 +35,13 @@ pattern so it doesn't need to be continually re-implemented.
 There are different classes of configuration data. Some examples
 include (but are not limited to):
 
-- "fixed" configuration that is checked into source control and edited
-  like code
-- "private" configuration that contains sensitive data which cannot be
-  added to source control
-- configuration that applies only to specific environments
-- configuration that applies only to specific users in a development
-  setting
+- Basic configuration that is used everywhere. Usually it is checked
+  into source control and edited like code.
+- Private configuration that contains sensitive data which cannot be
+  added to source control.
+- Configuration that applies only to specific environments.
+- Configuration that applies only to specific users in a development
+  setting.
 
 Immuconf is built around the concept of using a seperate configuration
 file for each of these concerns, which are ultimately merged together
@@ -58,7 +57,7 @@ As an example, one might specify this sequence of config files:
 
 - `resources/config.edn` is checked into git. It defines certain
   config items that always apply. It also defines _overridable
-  values_. For example, it could specify that there be a database
+  values_. For example, it could specify that there must be a database
   connection defined in subsequent config files.
 - `resources/staging.edn` is also checked into git. Presumably there
   are also `resources/prod.edn` and `resources/dev.edn` which could be
@@ -74,8 +73,7 @@ As an example, one might specify this sequence of config files:
 
 If a key is unexpectedly overridden, it logs a warning. This helps
 prevent accidental overrides, but allows developers to deliberately
-override certain values. The override warning can also be surpressed,
-if that's what actually required.
+override certain values.
 
 ### Config File Syntax
 
@@ -98,14 +96,14 @@ and may occur in value position:
 
 Values may also specify a *default*, using the `immuconf/default`
 reader literal. Default values may be overridden without any warning
-message, but neither with they throw an error if they are *not* overidden.
+message, but will simple resolve to the given value without a warning
+if they are *not* overidden.
 
 ```clojure
 {:environment {:cache-size #immuconf/default 32}}
 ```
 
 ### API
-
 
 #### Load
 
@@ -124,7 +122,7 @@ were not).
 
 If `load` is passed *no* arguments, it will first attempt to read an
 `.immuconf.edn` file (relative to the project path), which should be
-an EDN file containing a sequence of config file paths..
+an EDN file containing a sequence of config file paths.
 
 If there is no `.immuconf.edn` file, it will fall back to reading the
 value of the `IMMUCONF_CFG` system environment variable, which should
@@ -154,10 +152,10 @@ not found, instead of just returning `nil` (which virtually ensures a
 
 ## Logging
 
-Logging warnings an errors is an important part of Immuconf.
+Logging of warnings and errors is an important part of Immuconf.
 
-Immuconf logs using clojure.tools.logging, which in turn will detect
-and support most JVM logging systems. If this doesn't meet your needs,
+Immuconf logs using `clojure.tools.logging`, which in turn will detect
+and use most JVM logging systems. If this doesn't meet your needs,
 please file a Github issue and I will see how hard it is to add
 support for your logging system..
 
