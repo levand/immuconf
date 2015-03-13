@@ -63,8 +63,8 @@ As an example, one might specify this sequence of config files:
   are also `resources/prod.edn` and `resources/dev.edn` which could be
   used instead. This file might specify a database connection, and all
   the non-sensitive parameters for the database connection: the URI,
-  etc. It would also specify overrides for sensitive DB parameters
-  (e.g, the password).
+  etc. It would also specify that certain sensitive DB parameters
+  (e.g, the password) must be present, but would not actually provide them.
 - `~/.private/config.edn` would contain the actual sensitive
   information, such as database passwords, and would not be checked
   into git.
@@ -79,7 +79,7 @@ override certain values.
 
 Config files are valid EDN files.
 
-The basic syntax is standed nested maps. Nested collections other than
+The basic syntax is standard nested maps. Nested collections other than
 maps are not supported - vectors, sets and list may be terminal
 "leaves" but they will not be merged when loading multiple config
 files.
@@ -129,15 +129,14 @@ value of the `IMMUCONF_CFG` system environment variable, which should
 be a colon-delimited list of config file paths.
 
 If there is neither an `.immuconf.edn` file nor an `IMMUCONF_CFG`
-environment variable (or if the config map returned by either has now
-keys), the system will throw an error.
+environment variabl, the system will throw an error.
 
 #### Get
 
 The only other public function in the API is
 `immuconf.config/get`. Its first argument is a config map, any
 additional arguments are keys (as would be passed to
-`clojure.core/get-in`.
+`clojure.core/get-in`).
 
 ```clojure
 (immuconf.config/get my-cfg :database :uri)
