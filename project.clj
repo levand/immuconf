@@ -1,4 +1,4 @@
-(defproject levand/immuconf "0.1.0-SNAPSHOT"
+(defproject levand/immuconf "0.1.0"
   :description "A small library for loding configuration files in a
   Clojure application."
   :url "http://github.com/levand/immuconf"
