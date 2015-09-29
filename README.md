@@ -129,7 +129,7 @@ value of the `IMMUCONF_CFG` system environment variable, which should
 be a colon-delimited list of config file paths.
 
 If there is neither an `.immuconf.edn` file nor an `IMMUCONF_CFG`
-environment variabl, the system will throw an error.
+environment variable, the system will throw an error.
 
 #### Get
 
@@ -142,11 +142,11 @@ additional arguments are keys (as would be passed to
 (immuconf.config/get my-cfg :database :uri)
 ```
 
-The only differences betwen `immuconf.config/get` and
+The only differences between `immuconf.config/get` and
 `clojure.core/get` are that the Immuconf version takes varargs instead
-of a sequence of keys and that that, if the key is missing, it will
+of a sequence of keys and that, if the key is missing, it will
 throw an info-bearing exception explaining what key was expected but
-not found, instead of just returning `nil` (which virtually ensures a
+not found instead of just returning `nil` (which virtually ensures a
 `NullPointerExcption` somewhere downstream).
 
 ## Logging
@@ -156,7 +156,7 @@ Logging of warnings and errors is an important part of Immuconf.
 Immuconf logs using `clojure.tools.logging`, which in turn will detect
 and use most JVM logging systems. If this doesn't meet your needs,
 please file a Github issue and I will see how hard it is to add
-support for your logging system..
+support for your logging system.
 
 ## License
 
