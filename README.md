@@ -96,7 +96,7 @@ and may occur in value position:
 
 Values may also specify a *default*, using the `immuconf/default`
 reader literal. Default values may be overridden without any warning
-message, but will simple resolve to the given value without a warning
+message, but will simply resolve to the given value without a warning
 if they are *not* overidden.
 
 ```clojure
