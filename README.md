@@ -3,6 +3,10 @@
 A small library for explicitly managing configuration files in a
 Clojure program.
 
+## Installation
+
+[![Clojars Project](http://clojars.org/levand/immuconf/latest-version.svg)](http://clojars.org/levand/immuconf)
+
 ## Rationale
 
 Every application needs configuration files. There are many different
