@@ -105,6 +105,12 @@
           (log/info "Using configuration files specified in $IMMUCONF_CFG")
           (apply load cfgs))))))
 
+(defn- expand-home [filename]
+  "Useful on *nix systems to that ~ (home) dirs work"
+  (if (.startsWith filename "~")
+    (clojure.string/replace-first filename "~" (System/getProperty "user.home"))
+    filename))
+
 (defn load
   "If no arguments are specified, attempt to load config files from a
    `.immuconf.edn` file or an IMMUCONF_CFG environment variable, in that
@@ -122,7 +128,10 @@
        (load-from-env)
        (throw (ex-info "No configuration files were specified, and neither an .immuconf.edn file nor an IMMUCONF_CFG environment variable was found" {}))))
   ([& cfg-files]
-     (validate-cfg (merge-cfgs (map load-cfg-file cfg-files)))))
+     (validate-cfg
+       (merge-cfgs
+         (map load-cfg-file
+              (map expand-home cfg-files))))))
 
 (defn get
   "Look up the given keys in the specified config. If the key is not
