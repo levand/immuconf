@@ -1,7 +1,6 @@
 # immuconf
 
-A small library for explicitly managing configuration files in a
-Clojure program.
+A small library for managing configuration files 12Factor style in Clojure and ClojureScript projects
 
 ## Rationale
 
