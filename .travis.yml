@@ -1,0 +1,11 @@
+language: clojure
+jdk:
+  - oraclejdk8
+
+script:
+  - lein ancient
+  - lein eastwood
+  - lein test
+  - lein doo node immuconf-test once
+
+sudo: false
