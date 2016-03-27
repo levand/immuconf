@@ -68,7 +68,7 @@ Values may also specify a *default*, using the `immuconf/default` reader literal
 The primary api is the `immuconf.config/load` function. It takes any number of arguments. Each argument must be resolvable to a config file, and can be of any type that is a valid argument for `clojure.java.io/reader`. `load` returns a standard Clojure or ClojureScript map, but will throw an error if the config file is invalid (that is, if it contains any values that were specified to have been overridden but were not.)
 
 ```clojure
-(def my-cfg (immuconf.config/load "resources/config.edn" "resources/dev.edn" "~/.private/config.edn" "luke-dev.edn"))
+(def my-cfg (immuconf.config/load "resources/config.edn" "resources/dev.edn" "~/.private/config.edn" "bobdobbs-dev.edn"))
 ```
 
 If `load` is passed *no* arguments, it will first attempt to read an `.immuconf.edn` file (relative to the project path), which should be an EDN file containing a sequence of config file paths.
