@@ -5,7 +5,8 @@ jdk:
 script:
   - lein ancient
   - lein eastwood
+  - lein cljfmt check
   - lein test
+  - lein doo node immuconf-test once
 
 sudo: false
-
