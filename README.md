@@ -2,6 +2,10 @@
 
 A small library for [managing configuration files 12Factor style](http://12factor.net/config) in Clojure and ClojureScript (nodejs) projects (ported from [the original Clojure-only `levand/immuconf` library](https://github.com/levand/immuconf).)
 
+Add this to the `:dependencies` stanza of your `project.clj`:
+
+[![Clojars Project](http://clojars.org/russellwhitaker/immuconf/latest-version.svg)](http://clojars.org/russellwhitaker/immuconf)
+
 ## Rationale
 
 Every application needs configuration files. There are many different approaches. The purpose of this library is twofold: the first is to codify a set of decisions that have served the original author (Luke VanderHart) well on several projects, and the second is to provide a canonical implementation of the pattern so it doesn't need to be continually re-implemented.
