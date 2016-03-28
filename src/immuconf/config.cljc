@@ -127,7 +127,7 @@
    variable. Return nil if no such variable is defined.
   "
   []
-  (let [val #?(:cljs (System/getenv "IMMUCONF_CFG") :clj (:immuconf-cfg env))]
+  (let [val #?(:cljs (.env nodejs/process "IMMUCONF_CFG") :clj (:immuconf-cfg env))]
     (when-not (empty? val)
       (let [cfgs (s/split val #":")]
         (when-not (empty? cfgs)
