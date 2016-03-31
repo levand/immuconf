@@ -52,7 +52,14 @@
   (is (cfg/load "~/fixtures/test-a.edn")))
 
 (deftest missing-files-are-allowed
-  (is (= {} (cfg/load "test/fixtures/this-file-does-not-exist.edn"))))
+  (is (= (cfg/load "test/fixtures/test-a.edn"
+                   "test/fixtures/this-file-does-not-exist.edn"
+                   "test/fixtures/test-b.edn")
+         {:a {:b {:c 1 :d 2}}})
+      "Missing files are treated as empty maps")
+  (is (= {} (cfg/load "test/fixtures/this-file-does-not-exist.edn"
+                      "test/fixtures/another-missing-file.edn"))
+      "If all files are missing, the config is an empty map"))
 
 
 
