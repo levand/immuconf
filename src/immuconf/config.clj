@@ -3,6 +3,7 @@
   (:require [clojure.walk :as w]
             [clojure.edn :as edn]
             [clojure.string :as s]
+            [clojure.java.io :as java.io]
             [clojure.tools.logging :as log]))
 
 (ns-unmap *ns* 'Override)
@@ -75,7 +76,9 @@
   given filename and the resulting config "
   [file]
   (try
-    [file (edn/read-string {:readers *data-readers*} (slurp file))]
+    (let [file-as-file (java.io/as-file file)]
+      (when (.exists file-as-file)
+        [file (edn/read-string {:readers *data-readers*} (slurp file-as-file))]))
     (catch Throwable t
       (throw (ex-info (format "Error loading config file: %s" file)
                       {:file file} t)))))
