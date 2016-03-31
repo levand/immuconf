@@ -51,6 +51,8 @@
   (System/setProperty "user.home" (str (System/getProperty "user.dir") "/test"))
   (is (cfg/load "~/fixtures/test-a.edn")))
 
+(deftest missing-files-are-allowed
+  (is (= {} (cfg/load "test/fixtures/this-file-does-not-exist.edn"))))
 
 
 
