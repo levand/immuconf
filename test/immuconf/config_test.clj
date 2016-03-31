@@ -1,5 +1,4 @@
 (ns immuconf.config-test
-  (:import [java.io File])
   (:require [clojure.test :refer :all]
             [clojure.tools.logging :as log]
             [immuconf.config :as cfg]))
@@ -47,6 +46,10 @@
     (is (thrown-with-msg? clojure.lang.ExceptionInfo
                           #"\(:a :x :c\)"
                           (cfg/get cfg :a :x :c)))))
+
+(deftest path-with-tilde
+  (System/setProperty "user.home" (str (System/getProperty "user.dir") "/test"))
+  (is (cfg/load "~/fixtures/test-a.edn")))
 
 
 
