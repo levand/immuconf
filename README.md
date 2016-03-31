@@ -144,7 +144,7 @@ additional arguments are keys (as would be passed to
 
 The only differences betwen `immuconf.config/get` and
 `clojure.core/get` are that the Immuconf version takes varargs instead
-of a sequence of keys and that that, if the key is missing, it will
+of a sequence of keys and that, if the key is missing, it will
 throw an info-bearing exception explaining what key was expected but
 not found, instead of just returning `nil` (which virtually ensures a
 `NullPointerExcption` somewhere downstream).
